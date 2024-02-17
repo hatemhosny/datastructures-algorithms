@@ -6,9 +6,7 @@ const getContent = async (url) => {
   const pathname = new URL(url).pathname.slice(1);
   const [user, repo, _type, branch, ...path] = pathname.split("/");
   const [name, _extension] = path[path.length - 1].split(".");
-  const scriptUrl = `https://raw.githubusercontent.com/${user}/${repo}/${branch}/${path.join(
-    "/",
-  )}`;
+  const scriptUrl = `https://raw.githubusercontent.com/${user}/${repo}/${branch}/${path.join("/")}`;
   const script = await fetch(scriptUrl).then(
       async (res) => `// from ${url}\n\n` + (await res.text()),
     );
@@ -42,7 +40,7 @@ const loadAlgorithm = async () => {
 
   if (!playground) {
     playground = await createPlayground("#container", {
-      appUrl: "https://v22.livecodes.io/",
+      appUrl: "https://v24.livecodes.io/",
       config,
     });
   } else {
