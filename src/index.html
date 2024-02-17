@@ -1,0 +1,161 @@
+<h1>
+  <a id="title-link"
+    >Data Structures and Algorithms Playground - <span id="language">JavaScript</span></a
+  >
+</h1>
+<p class="languages">Switch to: <a id="other-lang-link"></a></p>
+<p>
+  Algorithm:
+  <select id="algorithm-select"></select>
+</p>
+<p>(Source: <a target="_blank" id="source-link">sudheerj/datastructures-algorithms</a>)</p>
+<div id="container" style="height: 80vh"></div>
+
+<div id="footer">
+  <p>
+    This page was built in
+    <a href="https://livecodes.io/" target="_blank">LiveCodes</a>
+    and
+    <a href="https://livecodes.io/docs/features/deploy" target="_blank"
+      >deployed</a
+    >
+    to GitHub Pages.
+  </p>
+  <p>
+    <a
+      href="https://livecodes.io/?activeEditor=script&x=https://github.com/hatemhosny/datastructures-algorithms/tree/gh-pages/src"
+      target="_blank"
+      >Edit in LiveCodes</a
+    >
+    -
+    <a
+      href="https://github.com/hatemhosny/datastructures-algorithms/"
+      target="_blank"
+      >View on GitHub</a
+    >
+  </p>
+</div>
+
+<script>
+const goAlgorithms = [
+    "src/go/sorting/01-bubbleSort/BubbleSort",
+    "src/go/sorting/02-selectionSort/SelectionSort",
+    "src/go/sorting/03-insertionSort/InsertionSort",
+    "src/go/sorting/04-mergeSort/MergeSort",
+    "src/go/sorting/06-quickSort/QuickSort",
+    "src/go/sorting/07-heapSort/HeapSort",
+    "src/go/sorting/08-radixSort/RadixSort",
+];
+const jsAlgorithms = [
+    "src/javascript/algorithms/array/containerWithMostWater",
+    "src/javascript/algorithms/array/containsDuplicate",
+    "src/javascript/algorithms/array/maxCircularSubArray",
+    "src/javascript/algorithms/array/maxProductSubArray",
+    "src/javascript/algorithms/array/maxSubArray",
+    "src/javascript/algorithms/array/minRotatedSortedArray",
+    "src/javascript/algorithms/array/productExceptSelf",
+    "src/javascript/algorithms/array/rotate",
+    "src/javascript/algorithms/array/searchRotatedSortedArray",
+    "src/javascript/algorithms/array/threeSum",
+    "src/javascript/algorithms/doublyLinkedlist/SwapNodePairs",
+    "src/javascript/algorithms/doublyLinkedlist/palindromeCheck",
+    "src/javascript/algorithms/doublyLinkedlist/swapFirstAndLast",
+    "src/javascript/algorithms/hashtable/duplicates",
+    "src/javascript/algorithms/hashtable/findTwoSumIndices",
+    "src/javascript/algorithms/hashtable/firstNonRepeatingCharacter",
+    "src/javascript/algorithms/hashtable/groupAnagrams",
+    "src/javascript/algorithms/hashtable/verifyCommonElements",
+    "src/javascript/algorithms/linkedlist/binaryToDecimal",
+    "src/javascript/algorithms/linkedlist/detectLoop",
+    "src/javascript/algorithms/linkedlist/findKthNodeFromEnd",
+    "src/javascript/algorithms/linkedlist/findMiddleNode",
+    "src/javascript/algorithms/linkedlist/partitionList",
+    "src/javascript/algorithms/linkedlist/removeDuplicates",
+    "src/javascript/algorithms/linkedlist/reverseSubstring",
+    "src/javascript/algorithms/queue/enqueueDequeueWithStacks",
+    "src/javascript/algorithms/sorting/bubbleSortLinkedlist",
+    "src/javascript/algorithms/sorting/mergeTwoSortedLists",
+    "src/javascript/algorithms/sorting/selectionSortLinkedlist",
+    "src/javascript/algorithms/stack/balancedBrackets",
+    "src/javascript/algorithms/stack/sortStack",
+    "src/javascript/algorithms/strings/greatestCommonDivisor",
+    "src/javascript/algorithms/strings/longestRepeatingCharReplacement",
+    "src/javascript/algorithms/strings/longestSubstringWithoutRepeatingChar",
+    "src/javascript/algorithms/strings/mergeStringsAlternately",
+    "src/javascript/algorithms/strings/minWindowSubstring",
+    "src/javascript/algorithms/strings/validAnagram",
+    "src/javascript/datastructures/doublyLinkedlist/class/doublyLinkedlist",
+    "src/javascript/datastructures/doublyLinkedlist/class/node",
+    "src/javascript/datastructures/graphs/unweighted_undirected",
+    "src/javascript/datastructures/hashtable/hashtable",
+    "src/javascript/datastructures/linkedlist/Node",
+    "src/javascript/datastructures/linkedlist/class/linkedList",
+    "src/javascript/datastructures/linkedlist/class/node",
+    "src/javascript/datastructures/queue/queue_array",
+    "src/javascript/datastructures/queue/queue_with_linkedlist",
+    "src/javascript/datastructures/queue/queue_with_stacks",
+    "src/javascript/datastructures/stack/stack_with_array",
+    "src/javascript/datastructures/stack/stack_with_linkedlist",
+    "src/javascript/datastructures/trees/binary_search_tree",
+    "src/javascript/sorting/bubbleSort/bubbleSort",
+    "src/javascript/sorting/heapSort/heapSort",
+    "src/javascript/sorting/insertionSort/insertionSort",
+    "src/javascript/sorting/mergeSort/mergeSort",
+    "src/javascript/sorting/quickSort/quickSort",
+    "src/javascript/sorting/radixSort/radixSort",
+    "src/javascript/sorting/selectionSort/selectionSort"
+]
+
+  const params = new URLSearchParams(window.location.search);
+  window.languages = [
+    {
+      name: "javascript",
+      title: "JavaScript",
+      ext: "js",
+      repo: "https://github.com/sudheerj/datastructures-algorithms",
+      algorithms: jsAlgorithms,
+      defaultAlgorithm: "src/javascript/sorting/bubbleSort/bubbleSort",
+    },
+    {
+      name: "go",
+      title: "Go",
+      ext: "go",
+      repo: "https://github.com/sudheerj/datastructures-algorithms",
+      algorithms: goAlgorithms,
+      defaultAlgorithm: "src/go/sorting/01-bubbleSort/BubbleSort",
+    },
+  ];
+
+  window.lang =
+    window.languages.find((language) =>
+      [language.name, language.ext, language.title].includes(
+        params.get("lang"),
+      ),
+    ) || window.languages[0];
+
+  document.getElementById("title-link").href = `?lang=${window.lang.ext}`;
+
+  window.algorithmSelect = document.getElementById("algorithm-select");
+  document.getElementById("source-link").href = window.lang.repo;
+  document.getElementById("language").innerText = window.lang.title;
+
+  const otherLang = window.languages.find((lang) => lang !== window.lang);
+  document.getElementById("other-lang-link").innerText = otherLang.title;
+  document.getElementById("other-lang-link").href = `?lang=${otherLang.ext}`;
+
+  const algorithms = window.lang.algorithms;
+
+  algorithms.forEach((algorithm) => {
+    const option = document.createElement("option");
+    option.value = algorithm;
+    option.innerText = algorithm;
+    option.id = algorithm;
+    algorithmSelect.appendChild(option);
+  });
+
+  const selected =
+    (params.get("algorithm") &&
+      algorithms.find((algorithm) => algorithm === params.get("algorithm"))) ||
+    window.lang.defaultAlgorithm;
+  document.getElementById(selected).selected = true;
+</script>
