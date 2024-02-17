@@ -1,6 +1,6 @@
 <h1>
   <a id="title-link"
-    >Data Structures and Algorithms Playground - <span id="language">JavaScript</span></a
+    >Data Structures and Algorithms - <span id="language">JavaScript</span></a
   >
 </h1>
 <p class="languages">Switch to: <a id="other-lang-link"></a></p>
@@ -144,11 +144,18 @@ const jsAlgorithms = [
   document.getElementById("other-lang-link").href = `?lang=${otherLang.ext}`;
 
   const algorithms = window.lang.algorithms;
+  const trimPath = (algorithmPath) =>
+    algorithmPath
+      .replace("src/javascript/", "")
+      .replace('src/go/', "")
+      .replace('algorithms/', "")
+      .replace('datastructures/', "")
+      .replace('sorting/', "")
 
   algorithms.forEach((algorithm) => {
     const option = document.createElement("option");
     option.value = algorithm;
-    option.innerText = algorithm;
+    option.innerText = trimPath(algorithm);
     option.id = algorithm;
     algorithmSelect.appendChild(option);
   });
